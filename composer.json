@@ -1,0 +1,27 @@
+{
+  "name": "lapaygroup/ozon-rocket-sdk",
+  "description": "SDK для работы с API транспортной компании Ozon Rocket (https://rocket.ozon.ru)",
+  "minimum-stability": "stable",
+  "license": "MIT",
+  "support": {
+    "issues": "https://github.com/lapaygroup/ozon-rocket-sdk/issues",
+    "source": "https://github.com/lapaygroup/ozon-rocket-sdk"
+  },
+  "authors": [
+    {
+      "name": "Nikolay Lapay",
+      "email": "nl@wildtuna.pro"
+    }
+  ],
+  "require": {
+    "php": "^7.2.5 || ^8.0",
+    "guzzlehttp/guzzle": "^7.2",
+    "psr/log": "^1.1",
+    "ext-json": "*"
+  },
+  "autoload": {
+    "psr-4": {
+      "LapayGroup\\OzonRocketSdk\\": "src/"
+    }
+  }
+}
