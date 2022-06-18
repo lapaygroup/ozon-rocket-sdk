@@ -237,4 +237,23 @@ class Client implements LoggerAwareInterface
 
         return $response['amount'];
     }
+
+    /**
+     * Получить информацию о сроках доставки
+     *
+     * @param int $delivery_id - ID ПВЗ получения заказа
+     * @param string $place_id ID места передачи заказа
+     * @return int
+     * @throws OzonRocketException
+     * @throws \Exception
+     */
+    public function getDeliveryPeriod($delivery_id, $place_id)
+    {
+        $params = ['deliveryVariantId' => $delivery_id, 'fromPlaceId' => $place_id];
+        $response = $this->callApi('GET', '/principal-integration-api/v1/delivery/time', $params);
+        if (empty($response['days']))
+            throw new OzonRocketException('От метода получения информации о сроках доставки не пришел обязательный параметр days');
+
+        return $response['days'];
+    }
 }

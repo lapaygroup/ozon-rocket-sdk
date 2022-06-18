@@ -20,9 +20,11 @@
 - [Конфигурация](#configuration)  
 - [Отладка](#debugging)  
 - [Расчет тарифа](#tariffs)  
+- [Получить информацию о сроках доставки](#delivery-period)  
 
 
 <a name="links"><h1>Changelog</h1></a>
+ - 0.1.1 - Добавлен метод получения сроков доставки;
  - 0.1.0 - Первая Alfa-версия SDK.  
 
 # Установка  
@@ -94,8 +96,6 @@ catch (\Exception $e) {
 ```
 [2022-06-13T14:15:21.219153+00:00] ozon-rocket-api.INFO: OzonRocket GET API request /principal-integration-api/v1/delivery/calculate?deliveryVariantId=1011000000001578&weight=500&fromPlaceId=18842715502000&estimatedPrice=1000 [] []
 [2022-06-13T14:15:21.319264+00:00] ozon-rocket-api.INFO: OzonRocket API response /principal-integration-api/v1/delivery/calculate: {"amount":146.4} {"Server":["nginx"],"Date":["Mon, 13 Jun 2022 14:15:21 GMT"],"Content-Type":["application/json; charset=utf-8"],"Transfer-Encoding":["chunked"],"Connection":["keep-alive"],"Vary":["Accept-Encoding"],"Access-Control-Allow-Origin":["*"],"X-O3-Trace-Id":["ac9d2e1144903e5f"],"X-O3-App-Name":["principal-integration-api"],"X-O3-App-Version":["2022.06.09.8221"],"X-O3-App-Handler":["HTTP GET /v{version:apiVersion}/delivery/calculate"],"X-O3-App-Endpoint":["HTTP GET /v{version:apiVersion}/delivery/calculate"],"api-supported-versions":["1"],"Strict-Transport-Security":["max-age=36000"],"http_status":200} []
-
-
 ```
 
 
@@ -117,4 +117,42 @@ catch (\Exception $e) {
 <?php
     $Client = new LapayGroup\OzonRocketSdk\Client('ApiTest_11111111-1111-1111-1111-111111111111', 'SRYksX3PBPUYj73A6cNqbQYRSaYNpjSodIMeWoSCQ8U=', 60, \LapayGroup\OzonRocketSdk\Client::API_URI_TEST);
     $price = $Client->calculationTariff(1011000000001578, 18842715502000, 500, 1000); // 146.4
+```
+
+<a name="tariffs"><h1>Расчет тарифа</h1></a>  
+
+Для расчета стоимости и сроков доставки используйте метод **calculationTariff**.   
+ 
+**Входные параметры:**
+- *$delivery_id (int)* - ID ПВЗ получения заказа;  
+- *$place_id (int)* - ID места передачи заказа;  
+- *$weight (int)* - вес отправления в граммах;
+- *$valuation (float)* - объявленная стоимость.
+
+**Выходные параметры:**
+- *float* - стоимость доставки    
+
+**Примеры вызова:**
+```php
+<?php
+    $Client = new LapayGroup\OzonRocketSdk\Client('ApiTest_11111111-1111-1111-1111-111111111111', 'SRYksX3PBPUYj73A6cNqbQYRSaYNpjSodIMeWoSCQ8U=', 60, \LapayGroup\OzonRocketSdk\Client::API_URI_TEST);
+    $price = $Client->calculationTariff(1011000000001578, 18842715502000, 500, 1000); // 146.4
+```
+
+<a name="delivery-period"><h1>Получить информацию о сроках доставки</h1></a>  
+
+Для получить информацию о сроках доставки используйте метод **getDeliveryPeriod**.   
+ 
+**Входные параметры:**
+- *$delivery_id (int)* - ID ПВЗ получения заказа;  
+- *$place_id (int)* - ID места передачи заказа;  
+
+**Выходные параметры:**
+- *int* - срок доставки в днях    
+
+**Примеры вызова:**
+```php
+<?php
+    $Client = new LapayGroup\OzonRocketSdk\Client('ApiTest_11111111-1111-1111-1111-111111111111', 'SRYksX3PBPUYj73A6cNqbQYRSaYNpjSodIMeWoSCQ8U=', 60, \LapayGroup\OzonRocketSdk\Client::API_URI_TEST);
+    $days = $Client->getDeliveryPeriod(1011000000001578, 18842715502000); // 9
 ```
