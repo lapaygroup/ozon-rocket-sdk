@@ -9,6 +9,8 @@
 [![License](https://poser.pugx.org/lapaygroup/ozon-rocket-sdk/license)](https://packagist.org/packages/lapaygroup/ozon-rocket-sdk)
 [![Telegram Chat](https://img.shields.io/badge/telegram-chat-blue.svg?logo=telegram)](https://t.me/phpboxberrysdk)
 
+# !!! [ПРОЕКТ ЗАКРЫТ КОМПАНИЕЙ OZON](https://rocket.ozon.ru/) !!!
+
 # SDK для [интеграции с программным комплексом Ozon Rocket](https://rocket.ozon.ru).  
 
 Посмотреть все проекты или подарить автору кофе можно [тут](https://lapaygroup.ru/opensource).    
